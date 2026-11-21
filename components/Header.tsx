@@ -108,7 +108,7 @@ export default function Header() {
       <div className="faixa">
         <div className="container">
           <div className="faixa-data">
-            {clima && <span className="clima">☁ {clima}</span>}
+            {clima && <span className="clima"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 19a4.500 4.500 0 0 1-.4-8.980A6 6 0 0 1 17.600 9.300 4.800 4.800 0 0 1 17.500 19h-11Z"/></svg><span className="sr-only">Máxima e mínima de hoje: </span>{clima}</span>}
             <span>Marabá (PA) - <b>{data}</b></span>
           </div>
           <nav className="faixa-links" aria-label="Institucional">
