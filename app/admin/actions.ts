@@ -10,6 +10,8 @@ import { AGORA_SQL, UPLOAD_DIR, sql, materiaPorId, slugLivre, slugify, usuarioPo
 import { confereSenha, hashSenha } from "@/lib/senha";
 import { EDITORIAS } from "@/lib/data";
 import { limparHtml } from "@/lib/html";
+import { MAX_GALERIA, lerGaleria, type FotoGaleria } from "@/lib/galeria";
+import { embedDeVideo } from "@/lib/video";
 
 export type Estado = { erro?: string; ok?: string } | undefined;
 
@@ -71,6 +73,23 @@ export async function salvarMateria(_: Estado, fd: FormData): Promise<Estado> {
   if (nova === "invalida") return { erro: "Imagem inválida. Use JPG, PNG, WEBP ou GIF de até 8 MB." };
   const imagem = fd.get("remover_imagem") ? "" : (nova ?? atual?.imagem ?? "");
 
+  // Galeria: fotos já salvas (na ordem escolhida) + fotos novas enviadas agora.
+  const SRC_OK = /^\/(uploads\/[a-f0-9-]{36}\.(jpg|png|webp|gif)|img\/[\w.-]+)$/;
+  const galeria: FotoGaleria[] = lerGaleria(String(fd.get("galeria_atual") ?? "[]"))
+    .filter((f) => SRC_OK.test(f.src))
+    .map((f) => ({ src: f.src, alt: f.alt.trim().slice(0, 250) }));
+  const novasFotos = fd.getAll("galeria_novas").filter((f): f is File => f instanceof File && f.size > 0);
+  const novasAlt = fd.getAll("galeria_novas_alt").map((a) => String(a).trim().slice(0, 250));
+  if (galeria.length + novasFotos.length > MAX_GALERIA) return { erro: `A galeria aceita até ${MAX_GALERIA} imagens.` };
+  for (let i = 0; i < novasFotos.length; i++) {
+    const r = await salvarImagem(novasFotos[i]);
+    if (r === "invalida") return { erro: `A imagem "${novasFotos[i].name}" é inválida. Use JPG, PNG, WEBP ou GIF de até 8 MB.` };
+    if (r) galeria.push({ src: r, alt: novasAlt[i] ?? "" });
+  }
+
+  const videoBruto = s("video", 300);
+  if (videoBruto && !embedDeVideo(videoBruto)) return { erro: "Link de vídeo inválido. Use um endereço do YouTube ou do Vimeo." };
+
   const chamada = s("chamada", 400) || titulo;
   const corpo = limparHtml(s("corpo", 200_000));
   const alt = s("alt", 250);
@@ -79,14 +98,14 @@ export async function salvarMateria(_: Estado, fd: FormData): Promise<Estado> {
 
   if (atual) {
     await sql(
-      `UPDATE materias SET editoria=$1, titulo=$2, chamada=$3, corpo=$4, imagem=$5, alt=$6, autor=$7, publicado=$8, atualizado_em=${AGORA_SQL} WHERE id=$9`,
-      [editoria, titulo, chamada, corpo, imagem, alt, autor, publicado, atual.id],
+      `UPDATE materias SET editoria=$1, titulo=$2, chamada=$3, corpo=$4, imagem=$5, alt=$6, autor=$7, publicado=$8, galeria=$9, video=$10, atualizado_em=${AGORA_SQL} WHERE id=$11`,
+      [editoria, titulo, chamada, corpo, imagem, alt, autor, publicado, JSON.stringify(galeria), videoBruto, atual.id],
     );
   } else {
     const slug = await slugLivre(slugify(titulo));
     await sql(
-      "INSERT INTO materias (slug, editoria, titulo, chamada, corpo, imagem, alt, autor, publicado) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)",
-      [slug, editoria, titulo, chamada, corpo, imagem, alt, autor, publicado],
+      "INSERT INTO materias (slug, editoria, titulo, chamada, corpo, imagem, alt, autor, publicado, galeria, video) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",
+      [slug, editoria, titulo, chamada, corpo, imagem, alt, autor, publicado, JSON.stringify(galeria), videoBruto],
     );
   }
   revalidatePath("/", "layout");

@@ -13,6 +13,8 @@ export type Materia = {
   corpo: string;
   imagem: string;
   alt: string;
+  galeria: string; // JSON: [{ src, alt }]
+  video: string;
   autor: string;
   publicado: number;
   criado_em: string;
@@ -98,6 +100,8 @@ async function preparar(): Promise<void> {
       papel TEXT NOT NULL DEFAULT 'editor',
       criado_em TEXT NOT NULL DEFAULT ${AGORA_SQL}
     );
+    ALTER TABLE materias ADD COLUMN IF NOT EXISTS galeria TEXT NOT NULL DEFAULT '[]';
+    ALTER TABLE materias ADD COLUMN IF NOT EXISTS video TEXT NOT NULL DEFAULT '';
     CREATE INDEX IF NOT EXISTS materias_editoria_idx ON materias (editoria, criado_em DESC);
   `);
 
