@@ -494,3 +494,13 @@ html[data-contraste="alto"] .nav-edit a, html[data-contraste="alto"] .nav-edit b
 .corpo-materia figure { margin: 1.4rem 0; max-width: 28rem; }
 .corpo-materia figure img { display: block; width: 100%; height: auto; border-radius: 4px; }
 .corpo-materia figcaption { font-size: .9rem; line-height: 1.4; margin-top: .45rem; color: var(--grafite); }
+
+/* Header desktop conforme a imagem: menu em uma linha com " - ", links da faixa sem traços */
+@media (min-width: 761px) {
+  .faixa-links > span > span[aria-hidden="true"] { display: none; }
+  .faixa-links > span + span { margin-left: .9rem; }
+  .nav-edit ul { flex-wrap: nowrap; gap: 0; white-space: nowrap; }
+  .nav-edit li:not(:last-child)::after { content: " -"; font-family: Arial, Helvetica, sans-serif; font-weight: 500; font-size: .875rem; margin: 0 .45rem 0 .3rem; color: #111; }
+  html[data-contraste="alto"] .nav-edit li:not(:last-child)::after { color: #fff; }
+  .nav-edit li.quebra { display: none; }
+}
