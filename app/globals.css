@@ -416,3 +416,5 @@ html[data-contraste="alto"] .faixa-links a { color: #fff; }
 .pesquisa .sel-btn::after { content: "✚"; border: 0; padding: 0; transform: none; margin: 0; font-size: .8rem; }
 .pesquisa .btn { font-size: .75rem; padding: .35rem .9rem; }
 html[data-contraste="alto"] .pesquisa .sel-btn { background: #000; color: #fff; border-color: #fff; }
+.nav-edit a, .nav-edit button.drop { color: #000; }
+html[data-contraste="alto"] .nav-edit a, html[data-contraste="alto"] .nav-edit button.drop { color: #fff; }
