@@ -103,6 +103,29 @@ export default function Header() {
     }
   }
 
+  function ferramentas(id: string, classe: string) {
+    return (
+    <div className={classe} role="group" aria-label="Busca e acessibilidade">
+      {buscando ? (
+        <form className="busca-form" role="search" onSubmit={buscar}>
+          <label className="sr-only" htmlFor={id}>Buscar no site</label>
+          <input id={id} name="q" type="search" autoFocus placeholder="Buscar" onKeyDown={(e) => e.key === "Escape" && setBuscando(false)} />
+        </form>
+      ) : (
+        <button type="button" aria-label="Buscar" onClick={() => setBuscando(true)}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden="true"><circle cx="10" cy="10" r="6.5" /><path d="m15 15 6 6" /></svg>
+        </button>
+      )}
+      <button type="button" className="contraste" aria-label="Alternar alto contraste" aria-pressed={alto} onClick={() => setAlto(!alto)} />
+      <button type="button" aria-label="Aumentar tamanho do texto" onClick={() => setFonte((f) => Math.min(f + 10, 150))}>A+</button>
+      <button type="button" aria-label="Diminuir tamanho do texto" onClick={() => setFonte((f) => Math.max(f - 10, 80))}>A-</button>
+      <button type="button" className="libras" aria-label="Tradutor de Libras" title="Tradutor de Libras (VLibras)" onClick={libras}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 11V5.5a1.5 1.5 0 0 1 3 0V10h1V3.5a1.5 1.5 0 0 1 3 0V10h1V5a1.5 1.5 0 0 1 3 0v7.2l1-1.3a1.6 1.6 0 0 1 2.5 2L18 17.5c-1 1.6-2.600 3-5.500 3-4 0-6.500-2.800-6.500-6.500v-2.400A1.500 1.500 0 0 1 7 11Z" /></svg>
+      </button>
+    </div>
+    );
+  }
+
   return (
     <header>
       <div className="faixa">
@@ -119,24 +142,7 @@ export default function Header() {
               </span>
             ))}
           </nav>
-          <div className="ferramentas" role="group" aria-label="Busca e acessibilidade">
-            {buscando ? (
-              <form className="busca-form" role="search" onSubmit={buscar}>
-                <label className="sr-only" htmlFor="q">Buscar no site</label>
-                <input id="q" name="q" type="search" autoFocus placeholder="Buscar" onKeyDown={(e) => e.key === "Escape" && setBuscando(false)} />
-              </form>
-            ) : (
-              <button type="button" aria-label="Buscar" onClick={() => setBuscando(true)}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden="true"><circle cx="10" cy="10" r="6.5" /><path d="m15 15 6 6" /></svg>
-              </button>
-            )}
-            <button type="button" className="contraste" aria-label="Alternar alto contraste" aria-pressed={alto} onClick={() => setAlto(!alto)} />
-            <button type="button" aria-label="Aumentar tamanho do texto" onClick={() => setFonte((f) => Math.min(f + 10, 150))}>A+</button>
-            <button type="button" aria-label="Diminuir tamanho do texto" onClick={() => setFonte((f) => Math.max(f - 10, 80))}>A-</button>
-            <button type="button" className="libras" aria-label="Tradutor de Libras" title="Tradutor de Libras (VLibras)" onClick={libras}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 11V5.5a1.5 1.5 0 0 1 3 0V10h1V3.5a1.5 1.5 0 0 1 3 0V10h1V5a1.5 1.5 0 0 1 3 0v7.2l1-1.3a1.6 1.6 0 0 1 2.5 2L18 17.5c-1 1.6-2.600 3-5.500 3-4 0-6.500-2.800-6.500-6.500v-2.400A1.500 1.500 0 0 1 7 11Z" /></svg>
-            </button>
-          </div>
+          {ferramentas("q", "ferramentas so-desktop")}
         </div>
       </div>
 
@@ -167,6 +173,7 @@ export default function Header() {
             ))}
           </ul>
         </nav>
+        {ferramentas("q2", "ferramentas so-mobile")}
       </div>
     </header>
   );
