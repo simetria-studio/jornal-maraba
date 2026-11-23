@@ -80,7 +80,7 @@ a { color: inherit; }
 
 /* ---------- Marca e navegação ---------- */
 .marca { text-align: center; padding-block: 1.1rem .8rem; }
-.logo { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-family: var(--f-marca); font-weight: 700; color: var(--verde-jornal); font-size: clamp(2.4rem, 9.5vw, 6.25rem); line-height: 1; letter-spacing: -.01em; }
+.logo { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-family: var(--f-marca); font-weight: 700; color: var(--verde-jornal); position: relative; left: calc(min(1120px, 100vw - 2rem) * .0196); font-size: calc(min(1120px, 100vw - 2rem) * .0817); line-height: 1; letter-spacing: -.01em; }
 .logo img { width: 1.85em; height: auto; transform: translateY(.1em); }
 html[data-contraste="alto"] .logo img { filter: brightness(1.4); }
 
@@ -433,6 +433,7 @@ html[data-contraste="alto"] .nav-edit a, html[data-contraste="alto"] .nav-edit b
   .marca { padding-block: .7rem .35rem; }
   .logo { font-size: clamp(2.2rem, 10.2vw, 3rem); gap: .3rem; white-space: nowrap; justify-content: center; }
   .logo img { width: 1.4em; }
+  .logo { left: 0; }
 
   .nav-edit ul { gap: 0 .3rem; justify-content: center; flex-wrap: wrap; row-gap: 0; }
   .nav-edit li { line-height: 1.15; white-space: nowrap; }
