@@ -151,7 +151,7 @@ main { padding-block: 1.5rem 3rem; }
 .bola { width: 1.15rem; height: 1.15rem; border-radius: 50%; display: inline-block; box-shadow: 0 0 0 2px transparent; }
 .opcoes input:checked + .bola { box-shadow: 0 0 0 2px var(--papel), 0 0 0 4px #111; }
 .opcoes input:focus-visible + .bola { outline: 3px solid #1e78c2; outline-offset: 3px; }
-.bola.bom { background: #0070c0; } .bola.razoavel { background: #7f7f7f; } .bola.ruim { background: var(--vermelho); }
+.bola.bom { background: #1f9a45; } .bola.razoavel { background: #f2c200; } .bola.ruim { background: var(--vermelho); }
 .ruim-txt { color: var(--vermelho); }
 .acoes { display: flex; justify-content: center; gap: .8rem; margin-top: 1.1rem; }
 .btn { font-family: var(--f-ui); font-weight: 700; text-transform: uppercase; font-size: .9rem; background: #111; color: var(--amarelo-bandeira); border: 2px solid #111; padding: .5rem 1.2rem; cursor: pointer; letter-spacing: .02em; }
@@ -407,3 +407,12 @@ html[data-contraste="alto"] .faixa .clima { color: inherit; }
 .faixa-links, .faixa-links a { color: #000; font-weight: 700; }
 .faixa-links span { opacity: 1; }
 html[data-contraste="alto"] .faixa-links a { color: #fff; }
+
+/* Pesquisa Popular conforme o layout: título em caixa mista, opções simples, listas brancas com contorno preto */
+.pesquisa h2 { text-transform: none; font-size: 1.25rem; padding: .2rem 1.1rem; }
+.opcoes label, .opcoes label:has(.bom), .opcoes label:has(.razoavel), .ruim-txt { text-transform: none; color: #111; font-weight: 500; }
+.pesquisa .sel-btn { background: #fff; border: 1px solid #111; justify-content: center; font-size: .8125rem; min-height: 2.4rem; padding: .45rem .8rem; text-align: center; color: #111; }
+.pesquisa .sel-btn .ph { opacity: 1; }
+.pesquisa .sel-btn::after { content: "✚"; border: 0; padding: 0; transform: none; margin: 0; font-size: .8rem; }
+.pesquisa .btn { font-size: .75rem; padding: .35rem .9rem; }
+html[data-contraste="alto"] .pesquisa .sel-btn { background: #000; color: #fff; border-color: #fff; }

@@ -79,11 +79,11 @@ export default function PesquisaPopular() {
       </fieldset>
 
       <p className="q" id="pp-bons">Indique de 1 até 5 <b>VEREADORES DE BONS PROJETOS DE LEI</b>:</p>
-      <Select labelledBy="pp-bons" items={itensVereadores} value={bons} onChange={setBons} multiple max={5} dark />
+      <Select labelledBy="pp-bons" placeholder="Click e Selecione" items={itensVereadores} value={bons} onChange={setBons} multiple max={5} dark />
       <p className="nota" style={{ textAlign: "left" }} aria-live="polite">{bons.length}/5 indicados</p>
 
       <p className="q" id="pp-dest">Das suas escolhas acima, <b>O DESTAQUE PELA EXCELÊNCIA DO MANDATO É</b>:</p>
-      <Select labelledBy="pp-dest" items={itensDestaque} value={destaque} onChange={setDestaque} dark disabled={!bons.length} placeholder={bons.length ? "Clique e selecione" : "Indique vereadores acima"} />
+      <Select labelledBy="pp-dest" items={itensDestaque} value={destaque} onChange={setDestaque} dark disabled={!bons.length} placeholder={bons.length ? "Click e Selecione" : "Indique vereadores acima"} />
 
       <div className="acoes">
         <button type="button" className="btn" onClick={votar}>Votar</button>
