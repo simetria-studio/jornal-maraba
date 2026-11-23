@@ -520,3 +520,24 @@ html[data-contraste="alto"] .nav-edit a, html[data-contraste="alto"] .nav-edit b
   .ferramentas .libras { border-radius: 3px; width: 2rem; height: 2rem; }
   html[data-contraste="alto"] .ferramentas { background: none; box-shadow: none; }
 }
+
+/* Faixa desktop: nunca quebrar linha; espaços encolhem conforme a largura */
+@media (min-width: 761px) {
+  .faixa .container { gap: clamp(.6rem, 1.8vw, 1.6rem); }
+  .faixa-data { gap: clamp(.6rem, 1.8vw, 1.6rem); font-size: clamp(.7rem, 1vw, .8125rem); }
+  .faixa-links { flex-wrap: nowrap; white-space: nowrap; gap: 0 clamp(.7rem, 1.8vw, 2rem); margin-left: 0; font-size: clamp(.7rem, 1vw, .8125rem); }
+  .faixa-links > span { white-space: nowrap; }
+  .faixa-links .rot-longo { white-space: nowrap; }
+  .ferramentas { flex-shrink: 0; gap: clamp(.1rem, .6vw, .5rem); }
+}
+@media (min-width: 761px) and (max-width: 1199px) {
+  .faixa-links .rot-longo { display: none; }
+  .faixa-links .rot-curto { display: inline; }
+}
+@media (min-width: 761px) {
+  .faixa .container, .faixa-data { gap: clamp(.5rem, 1.1vw, 1.2rem); }
+  .faixa-links { gap: 0 clamp(.6rem, 1.1vw, 1.3rem); }
+  .faixa-data { white-space: nowrap; }
+  .ferramentas button { min-width: 1.9rem; min-height: 1.9rem; }
+}
+@media (min-width: 761px) { .faixa .container { width: min(1280px, 100% - 2rem); } }
