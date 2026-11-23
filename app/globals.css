@@ -401,3 +401,6 @@ html[data-contraste="alto"] .opcoes label:has(.bom), html[data-contraste="alto"]
 .pesquisa h2 { text-transform: uppercase; }
 .faixa .clima { color: #1e78c2; font-size: .9375rem; gap: .4rem; }
 html[data-contraste="alto"] .faixa .clima { color: inherit; }
+.faixa-data, .faixa-data b { font-weight: 400; }
+.faixa-data .cidade { font-weight: 700; }
+.faixa .clima { color: #e8830c; }

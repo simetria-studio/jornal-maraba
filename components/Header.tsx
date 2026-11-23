@@ -132,7 +132,7 @@ export default function Header() {
         <div className="container">
           <div className="faixa-data">
             {clima && <span className="clima"><svg width="22" height="20" viewBox="0 0 26 22" aria-hidden="true"><g stroke="#f5a623" strokeWidth="2" strokeLinecap="round"><path d="M9 1.500v2M2.500 8h2M3.800 3l1.400 1.400M14.200 3l-1.400 1.400"/></g><circle cx="9" cy="8.500" r="4.200" fill="#ffc83d"/><path d="M10 20a4.500 4.500 0 0 1-.3-9A5.500 5.500 0 0 1 20.200 12 4 4 0 0 1 20 20Z" fill="#c9d3dc" stroke="#aebbc7" strokeWidth=".8"/></svg><span className="sr-only">Máxima e mínima de hoje: </span>{clima}</span>}
-            <span>Marabá (PA) - <b>{data}</b></span>
+            <span><strong className="cidade">Marabá (PA)</strong> - {data}</span>
           </div>
           <nav className="faixa-links" aria-label="Institucional">
             {NAV_EXTRA.map((l, i) => (
