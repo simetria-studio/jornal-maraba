@@ -404,3 +404,6 @@ html[data-contraste="alto"] .faixa .clima { color: inherit; }
 .faixa-data, .faixa-data b { font-weight: 400; }
 .faixa-data .cidade { font-weight: 700; }
 .faixa .clima { color: #e8830c; }
+.faixa-links, .faixa-links a { color: #000; font-weight: 700; }
+.faixa-links span { opacity: 1; }
+html[data-contraste="alto"] .faixa-links a { color: #fff; }
