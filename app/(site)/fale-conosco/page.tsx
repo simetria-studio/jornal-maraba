@@ -11,7 +11,7 @@ export default function FaleConosco() {
     <div className="pagina">
       <h1>Fale Conosco</h1>
       <span className="sublinha" aria-hidden="true" />
-      <div><LerEmVoz alvo="#texto-contato" /></div>
+      <div><LerEmVoz alvo="#texto-contato" compacto /></div>
 
       <div id="texto-contato">
         <p>{intro}</p>

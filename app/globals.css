@@ -368,3 +368,16 @@ html[data-contraste="alto"] .rodape-base .container, html[data-contraste="alto"]
   .loja p { font-weight: 700; }
 }
 @media (max-width: 760px) { .so-mobile { background: none; box-shadow: none; } }
+
+/* ---------- Player de áudio compacto (layout) ---------- */
+.audio-linha { display: flex; align-items: center; gap: .6rem; max-width: 14rem; margin: .5rem 0 1.1rem; color: #222; }
+.audio-linha button { background: none; border: 0; padding: .2rem; cursor: pointer; border-radius: 4px; display: grid; place-items: center; }
+.audio-linha button[aria-pressed="true"] { background: #e2f1e8; }
+.audio-linha img { width: 1.4rem; height: auto; }
+.audio-linha .trilha { flex: 1; height: 2px; background: #9a9a9a; position: relative; }
+.audio-linha .trilha span { position: absolute; left: 0; top: -1px; height: 4px; background: var(--verde-jornal); }
+.audio-linha .onda { color: #777; }
+.audio-linha .onda.falando { color: var(--verde-jornal); }
+html[data-contraste="alto"] .audio-linha { color: #fff; }
+html[data-contraste="alto"] .audio-linha img { filter: invert(1); }
+.pagina p { margin-bottom: .75rem; line-height: 1.5; color: #222; }
