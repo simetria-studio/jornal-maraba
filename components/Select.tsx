@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 
-export type Item = { value: string; label: string; sub?: string; part?: string };
+export type Item = { value: string; label: string; sub?: string; part?: string; completo?: string };
 
 type Props = {
   labelledBy?: string;
@@ -121,8 +121,14 @@ export default function Select({ labelledBy, placeholder = "Clique e selecione",
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => escolher(l.item.value)}
               >
-                <span>{l.item.label}</span>
-                {l.item.part && <span className="part">· {l.item.part}</span>}
+                {l.item.completo ? (
+                  <span className="vereador"><span className="v-linha"><b>{l.item.label}</b>{l.item.part && <> - {l.item.part}</>}</span><em>{l.item.completo}</em></span>
+                ) : (
+                  <>
+                    <span>{l.item.label}</span>
+                    {l.item.part && <span className="part">· {l.item.part}</span>}
+                  </>
+                )}
               </li>
             ),
           )}

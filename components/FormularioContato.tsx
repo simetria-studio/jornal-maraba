@@ -9,7 +9,9 @@ const toItems = (a: readonly string[]): Item[] => a.map((x) => ({ value: x, labe
 const municipios = toItems(MUNICIPIOS_PA);
 const estados = toItems(ESTADOS);
 const assuntos = toItems(ASSUNTOS);
-const editorias = toItems(EDITORIAS.map((e) => e.nome));
+// Mesma lista e ordem do Word (sem Comércio)
+const ORDEM_EDIT = ["cidadania", "noticias", "politica", "saude", "veiculos", "imoveis", "condominios", "colunistas", "empregos", "fala-o-povo"];
+const editorias = toItems(ORDEM_EDIT.map((sl) => EDITORIAS.find((e) => e.slug === sl)!.nome));
 
 const OBR = <span className="obrig"> *O campo acima é de preenchimento obrigatório</span>;
 
@@ -90,7 +92,7 @@ export default function FormularioContato() {
       </div>
 
       <div className="campo">
-        <label htmlFor="c-email">E-mail</label>
+        <label htmlFor="c-email"><span className="obrig-ast">*</span>e-mail</label>
         <input id="c-email" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} required aria-invalid={!!erros.email} />
         {OBR}
       </div>
@@ -107,7 +109,7 @@ export default function FormularioContato() {
           {OBR}
         </div>
         <div className="campo">
-          <span className="rotulo-ui" id="c-muni">*Município do Pará de onde você acessa:</span>
+          <span className="rotulo-ui" id="c-muni">*Municípios do Pará de onde você acessa:</span>
           <Select labelledBy="c-muni" items={municipios} value={muni} onChange={setMuni} alphabet disabled={!doPara} placeholder={doPara ? "Clique e selecione" : "Escolha o estado Pará"} />
           {OBR}
         </div>

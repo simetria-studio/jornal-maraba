@@ -14,7 +14,7 @@ function lerUrna(): Urna {
   try { return JSON.parse(localStorage.getItem(CHAVE) || "") as Urna; } catch { return { votos: [] }; }
 }
 
-const itensVereadores: Item[] = VEREADORES.map((v) => ({ value: v.nome, label: v.nome, part: v.partido }));
+const itensVereadores: Item[] = VEREADORES.map((v) => ({ value: v.nome, label: v.nome, part: v.partido, completo: v.completo }));
 
 export default function PesquisaPopular() {
   const [desempenho, setDesempenho] = useState<Voto["desempenho"] | "">("");
@@ -65,7 +65,7 @@ export default function PesquisaPopular() {
 
       <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
         <legend className="q" style={{ display: "block", margin: "1rem auto .6rem", fontSize: "1.05rem" }}>
-          O desempenho da <b>Câmara de Vereadores de Marabá</b> tem sido:
+          O desempenho da <b>CÂMARA DE VEREADORES DE MARABÁ</b> tem sido:
         </legend>
         <div className="opcoes">
           {(["bom", "razoavel", "ruim"] as const).map((k) => (
@@ -78,16 +78,16 @@ export default function PesquisaPopular() {
         </div>
       </fieldset>
 
-      <p className="q" id="pp-bons">Indique de <b>1 até 5 vereadores</b> de bons projetos de lei:</p>
+      <p className="q" id="pp-bons">Indique de 1 até 5 <b>VEREADORES DE BONS PROJETOS DE LEI</b>:</p>
       <Select labelledBy="pp-bons" items={itensVereadores} value={bons} onChange={setBons} multiple max={5} dark />
       <p className="nota" style={{ textAlign: "left" }} aria-live="polite">{bons.length}/5 indicados</p>
 
-      <p className="q" id="pp-dest">Das suas escolhas acima, <b>o destaque pela excelência do mandato</b> é:</p>
+      <p className="q" id="pp-dest">Das suas escolhas acima, <b>O DESTAQUE PELA EXCELÊNCIA DO MANDATO É</b>:</p>
       <Select labelledBy="pp-dest" items={itensDestaque} value={destaque} onChange={setDestaque} dark disabled={!bons.length} placeholder={bons.length ? "Clique e selecione" : "Indique vereadores acima"} />
 
       <div className="acoes">
         <button type="button" className="btn" onClick={votar}>Votar</button>
-        <button type="button" className="btn" onClick={() => setMostrar((v) => !v)} aria-expanded={mostrar}>Ver resultado</button>
+        <button type="button" className="btn" onClick={() => setMostrar((v) => !v)} aria-expanded={mostrar}>Ver Resultados</button>
       </div>
       <p className={`msg-form${msg.erro ? " erro" : ""}`} role="status" aria-live="polite">{msg.t}</p>
 

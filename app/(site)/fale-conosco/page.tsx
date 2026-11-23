@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LerEmVoz from "@/components/LerEmVoz";
 import FormularioContato from "@/components/FormularioContato";
 import { FALE_CONOSCO } from "@/lib/content.generated";
+import { Rico, semMarcas } from "@/lib/rico";
 
 export const metadata: Metadata = { title: "Fale Conosco" };
 
@@ -14,15 +15,16 @@ export default function FaleConosco() {
       <div><LerEmVoz alvo="#texto-contato" compacto /></div>
 
       <div id="texto-contato">
-        <p>{intro}</p>
-        <p>{promessa}</p>
+        <p><Rico texto={intro} /></p>
+        <p><Rico texto={promessa} /></p>
 
         <section className="anuncie" aria-labelledby="anuncie">
-          <h2 id="anuncie"><span className="destaque-cinza" style={{ fontFamily: "var(--f-corpo)", fontSize: "1rem", fontWeight: 900 }}>{chamadaAnuncio}</span></h2>
-          {resto.map((t, i) => {
+          <h2 id="anuncie"><span className="destaque-cinza" style={{ fontFamily: "var(--f-corpo)", fontSize: "1rem", fontWeight: 900 }}>{semMarcas(chamadaAnuncio)}</span></h2>
+          {resto.map((raw, i) => {
+            const t = semMarcas(raw);
             if (t.startsWith("Soluções em Publicidade")) return <h2 key={i}><span className="destaque-cinza" style={{ fontFamily: "var(--f-corpo)", fontSize: "1rem", fontWeight: 900 }}>{t}</span></h2>;
-            if (t.endsWith(":")) return <h3 key={i}>{t}</h3>;
-            return <p key={i}>{t}</p>;
+            if (t.endsWith(":") && t.length < 40) return <h3 key={i} className="h-reto">{t}</h3>;
+            return <p key={i}><Rico texto={raw} /></p>;
           })}
         </section>
       </div>
