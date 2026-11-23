@@ -11,7 +11,7 @@
   --f-corpo: var(--font-lato), system-ui, sans-serif;
   --f-ui: var(--font-roboto), system-ui, sans-serif;
   --f-titulo: var(--font-young-serif), Georgia, serif;
-  --f-mao: "Segoe Print", var(--font-caveat), cursive;
+  --f-mao: "Segoe Script", "Segoe Print", var(--font-caveat), cursive;
   --f-marca: "Cambria", var(--font-caladea), Georgia, serif;
   --larg: 1120px;
 }
@@ -418,3 +418,38 @@ html[data-contraste="alto"] .faixa-links a { color: #fff; }
 html[data-contraste="alto"] .pesquisa .sel-btn { background: #000; color: #fff; border-color: #fff; }
 .nav-edit a, .nav-edit button.drop { color: #000; }
 html[data-contraste="alto"] .nav-edit a, html[data-contraste="alto"] .nav-edit button.drop { color: #fff; }
+
+/* ---------- Celular: ajustes do cliente (faixa em 3 linhas, menu 5/4/2, ícones menores, anúncio) ---------- */
+.rot-curto { display: none; text-decoration: none; }
+.nav-edit li.quebra { display: none; }
+@media (max-width: 760px) {
+  .rot-longo { display: none; } .rot-curto { display: inline; }
+  .faixa .container { padding-block: .35rem; gap: .1rem; }
+  .faixa-data { align-items: center; gap: .05rem; }
+  .faixa-data > span:last-child { white-space: nowrap; font-size: clamp(.64rem, 3vw, .8rem); }
+  .faixa .clima { font-size: .875rem; }
+  .faixa-links { justify-content: center; flex-wrap: nowrap; font-size: clamp(.64rem, 3vw, .75rem); }
+
+  .marca { padding-block: .7rem .35rem; }
+  .logo { font-size: clamp(2.2rem, 11.2vw, 3.2rem); gap: .3rem; white-space: nowrap; justify-content: center; }
+
+  .nav-edit ul { gap: 0 .3rem; justify-content: center; flex-wrap: wrap; row-gap: 0; }
+  .nav-edit li { line-height: 1.15; white-space: nowrap; }
+  .nav-edit li.fim-linha::after { content: none !important; }
+  .nav-edit li.quebra { display: block; flex-basis: 100%; height: 0; }
+  .nav-edit a, .nav-edit button.drop { font-size: clamp(.66rem, 3.05vw, .8rem); padding: .12rem .05rem; }
+
+  .so-mobile { gap: .55rem; margin-top: .55rem; }
+  .so-mobile button { min-width: 1.6rem; min-height: 1.6rem; font-size: .78rem; padding: .1rem; }
+  .so-mobile .contraste { width: 1.5rem; height: 1.5rem; border-width: 2px; }
+  .so-mobile svg { width: 17px; height: 17px; }
+  .so-mobile .libras { width: 1.7rem; height: 1.7rem; }
+
+  .container:has(> .nav-edit) { border-bottom: 0; position: relative; padding-bottom: .55rem; }
+  .container:has(> .nav-edit)::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 100vw; transform: translateX(-50%); height: 3px; background: #8bbfa9; }
+
+  .anuncio { grid-template-columns: 1.05fr 1.05fr 1fr; }
+  .anuncio-logo { max-width: 8.5rem; }
+  .loja h3 { text-transform: none; }
+  .lojas { grid-template-rows: auto auto; grid-auto-flow: column; justify-content: start; }
+}

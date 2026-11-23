@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Fragment } from "react";
 import { COLUNISTAS, EDITORIAS, NAV_EXTRA } from "@/lib/data";
 
 const LS = { contraste: "jm-contraste", fonte: "jm-fonte" };
@@ -137,7 +137,7 @@ export default function Header() {
           <nav className="faixa-links" aria-label="Institucional">
             {NAV_EXTRA.map((l, i) => (
               <span key={l.href}>
-                <Link href={l.href} aria-current={pathname === l.href ? "page" : undefined}>{l.label}</Link>
+                <Link href={l.href} aria-current={pathname === l.href ? "page" : undefined}>{l.href === "/politica-de-privacidade" ? <><span className="rot-longo">Política de Privacidade</span><abbr className="rot-curto" title="Lei Geral de Proteção de Dados — Política de Privacidade">LGPD</abbr></> : l.label}</Link>
                 {i < NAV_EXTRA.length - 1 && <span aria-hidden="true"> -</span>}
               </span>
             ))}
@@ -157,8 +157,9 @@ export default function Header() {
       <div className="container">
         <nav className="nav-edit" aria-label="Editorias" ref={navRef}>
           <ul>
-            {EDITORIAS.map((e) => (
-              <li key={e.slug} style={{ ["--cor" as string]: e.cor }}>
+            {EDITORIAS.map((e, k) => (
+              <Fragment key={e.slug}>
+              <li className={k === 4 || k === 8 ? "fim-linha" : undefined} style={{ ["--cor" as string]: e.cor }}>
                 {e.slug === "colunistas" ? (
                   <>
                     <button type="button" className="drop" aria-expanded={menuCol} aria-haspopup="true" onClick={() => setMenuCol((v) => !v)}>{e.nome}</button>
@@ -170,6 +171,8 @@ export default function Header() {
                   <Link href={`/${e.slug}`} aria-current={pathname === `/${e.slug}` ? "page" : undefined}>{e.nome}</Link>
                 )}
               </li>
+              {(k === 4 || k === 8) && <li className="quebra" aria-hidden="true" />}
+              </Fragment>
             ))}
           </ul>
         </nav>
