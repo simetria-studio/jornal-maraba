@@ -504,3 +504,19 @@ html[data-contraste="alto"] .nav-edit a, html[data-contraste="alto"] .nav-edit b
   html[data-contraste="alto"] .nav-edit li:not(:last-child)::after { color: #fff; }
   .nav-edit li.quebra { display: none; }
 }
+
+/* Faixa desktop conforme a imagem: tudo em uma linha, sem fundos, Roboto */
+@media (min-width: 761px) {
+  .faixa, .faixa-data, .faixa-links, .ferramentas { font-family: var(--f-ui), Roboto, Arial, sans-serif; }
+  .faixa { background: transparent; }
+  .faixa .container { flex-wrap: nowrap; justify-content: flex-start; gap: 1.6rem; }
+  .faixa-data { flex-direction: row; align-items: center; gap: 1.6rem; white-space: nowrap; }
+  .faixa-data .cidade { font-weight: 400; }
+  .faixa-data .dt { text-transform: lowercase; }
+  .faixa-links { background: none; box-shadow: none; padding: 0; border-radius: 0; gap: 0 2rem; margin-left: 1rem; font-size: .8125rem; }
+  .faixa-links a { font-weight: 500; }
+  .ferramentas { margin-left: auto; background: none; box-shadow: none; padding: 0; border-radius: 0; gap: .5rem; }
+  .ferramentas button:hover { background: none; }
+  .ferramentas .libras { border-radius: 3px; width: 2rem; height: 2rem; }
+  html[data-contraste="alto"] .ferramentas { background: none; box-shadow: none; }
+}
