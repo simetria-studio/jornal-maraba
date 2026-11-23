@@ -80,15 +80,15 @@ a { color: inherit; }
 
 /* ---------- Marca e navegação ---------- */
 .marca { text-align: center; padding-block: 1.1rem .8rem; }
-.logo { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-family: var(--f-marca); font-weight: 700; color: var(--verde-jornal); font-size: clamp(2.4rem, 8.5vw, 4.4rem); line-height: 1; letter-spacing: -.01em; }
-.logo img { width: 1.4em; height: auto; transform: translateY(.1em); }
+.logo { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-family: var(--f-marca); font-weight: 700; color: var(--verde-jornal); font-size: clamp(2.4rem, 9.5vw, 6.25rem); line-height: 1; letter-spacing: -.01em; }
+.logo img { width: 1.85em; height: auto; transform: translateY(.1em); }
 html[data-contraste="alto"] .logo img { filter: brightness(1.4); }
 
 .nav-edit { border-bottom: 2px solid #8bbfa9; padding-bottom: .7rem; }
 html[data-contraste="alto"] .nav-edit { border-color: #fff; }
 .nav-edit ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .15rem 1rem; }
 .nav-edit li { position: relative; }
-.nav-edit a, .nav-edit button.drop { font-family: var(--f-ui); font-weight: 700; font-size: .875rem; text-transform: uppercase; text-decoration: none; color: var(--cor); background: none; border: 0; padding: .35rem .15rem; cursor: pointer; letter-spacing: .01em; }
+.nav-edit a, .nav-edit button.drop { font-family: var(--f-ui); font-weight: 700; font-size: .875rem; text-transform: none; text-decoration: none; color: var(--cor); background: none; border: 0; padding: .35rem .15rem; cursor: pointer; letter-spacing: .01em; }
 html[data-contraste="alto"] .nav-edit a, html[data-contraste="alto"] .nav-edit button.drop { color: #fff; }
 .nav-edit a:hover, .nav-edit button.drop:hover, .nav-edit a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
 .submenu { position: absolute; left: 50%; transform: translateX(-50%); top: 100%; z-index: 20; min-width: 12rem; background: #fff; border: 1px solid #cfd8d3; box-shadow: 0 8px 22px rgba(0,0,0,.14); padding: .35rem 0; display: none; flex-direction: column; }
@@ -432,6 +432,7 @@ html[data-contraste="alto"] .nav-edit a, html[data-contraste="alto"] .nav-edit b
 
   .marca { padding-block: .7rem .35rem; }
   .logo { font-size: clamp(2.2rem, 10.2vw, 3rem); gap: .3rem; white-space: nowrap; justify-content: center; }
+  .logo img { width: 1.4em; }
 
   .nav-edit ul { gap: 0 .3rem; justify-content: center; flex-wrap: wrap; row-gap: 0; }
   .nav-edit li { line-height: 1.15; white-space: nowrap; }
