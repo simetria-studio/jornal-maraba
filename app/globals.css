@@ -476,13 +476,21 @@ html[data-contraste="alto"] .nav-edit a, html[data-contraste="alto"] .nav-edit b
 .pagina .assinatura span { font-family: Calibri, Carlito, Arial, sans-serif; font-style: italic; font-weight: 700; }
 
 /* Matéria: assinatura, compartilhar e imagens no texto */
-.byline { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .9rem; margin: .4rem 0 .8rem; }
-.byline .vazio-meta { margin: 0; }
-.byline-foto { width: 56px; height: auto; border-radius: 6px; }
-.compartilhar { display: flex; align-items: center; gap: .55rem; margin-left: auto; }
+.byline { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "por foto share" "audio foto share" "contr foto share"; align-items: center; column-gap: 1rem; max-width: 36rem; margin: .4rem 0 1rem; }
+.byline .por { grid-area: por; margin: 0; display: flex; align-items: center; flex-wrap: wrap; gap: .2rem .45rem; }
+.por-ponte { width: 34px; height: auto; }
+.por-rot { font: italic 700 1rem Georgia, "Times New Roman", serif; color: #666; }
+.por-nome { font: italic 700 1.1rem Arial, Helvetica, sans-serif; color: #111; }
+.por-data { flex-basis: 100%; font: .78rem var(--f-ui); color: #666; }
+.por-audio { grid-area: audio; margin-top: .6rem; }
+.por-audio .audio-linha { margin: 0; max-width: 15rem; }
+.por-contraste { grid-area: contr; margin-top: .5rem; }
+.btn-contraste-materia { background: none; border: 0; padding: 0; cursor: pointer; line-height: 0; }
+.por-foto { grid-area: foto; width: 112px; max-width: 26vw; height: auto; border-radius: 12px; }
+.compartilhar { grid-area: share; display: flex; flex-direction: column; align-items: center; gap: .55rem; position: relative; }
 .compartilhar button { background: none; border: 0; padding: 0; cursor: pointer; line-height: 0; }
 .compartilhar img { height: 26px; width: auto; display: block; }
-.compartilhar .copiado { font: 700 .75rem var(--f-ui); color: var(--grafite); }
+.compartilhar .copiado { position: absolute; right: 100%; top: 50%; margin-right: .4rem; white-space: nowrap; font: 700 .75rem var(--f-ui); color: var(--grafite); }
 .corpo-materia figure { margin: 1.4rem 0; max-width: 28rem; }
 .corpo-materia figure img { display: block; width: 100%; height: auto; border-radius: 4px; }
 .corpo-materia figcaption { font-size: .9rem; line-height: 1.4; margin-top: .45rem; color: var(--grafite); }

@@ -59,6 +59,11 @@ export default function Header() {
     if (pronto.current) gravar(LS.contraste, alto ? "alto" : "normal");
   }, [alto]);
 
+  useEffect(() => {
+    const alternar = () => setAlto((v) => !v);
+    window.addEventListener("jm-contraste", alternar);
+    return () => window.removeEventListener("jm-contraste", alternar);
+  }, []);
   useEffect(() => { setMenuCol(false); }, [pathname]);
   useEffect(() => {
     const fora = (e: MouseEvent) => {
