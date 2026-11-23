@@ -399,3 +399,5 @@ html[data-contraste="alto"] .opcoes label:has(.bom), html[data-contraste="alto"]
 .obrig-ast { color: var(--vermelho); }
 .faixa-data, .faixa-data b { font-weight: 700; }
 .pesquisa h2 { text-transform: uppercase; }
+.faixa .clima { color: #1e78c2; font-size: .9375rem; gap: .4rem; }
+html[data-contraste="alto"] .faixa .clima { color: inherit; }
