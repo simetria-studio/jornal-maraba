@@ -12,6 +12,7 @@ export const EDITORIAS: Editoria[] = [
   { slug: "colunistas", nome: "Colunistas", cor: "#5a56b8" },
   { slug: "condominios", nome: "Condomínios", cor: "#2a6fb5" },
   { slug: "empregos", nome: "Empregos", cor: "#b58a1e" },
+  { slug: "eventos", nome: "Eventos", cor: "#8a4fb5" },
   { slug: "fala-o-povo", nome: "Fala o Povo", cor: "#d4482a" },
 ];
 

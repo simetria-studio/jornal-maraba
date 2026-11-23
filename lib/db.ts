@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { Pool } from "pg";
 import { hashSenha } from "./senha";
+import { MATERIA_VIOLENCIA_CORPO } from "./materia-violencia";
 
 export type Materia = {
   id: number;
@@ -124,6 +125,12 @@ async function preparar(): Promise<void> {
     await p.query(ins, ["rede-de-protecao-violencia-domestica-feminicidio-maraba", "cidadania", t1, t1, "/img/foto-cidadania.png", "Mulher cobrindo o rosto com as mãos"]);
     await p.query(ins, ["raimundo-neto-sindicom-fortalecimento-comercio", "comercio", t2, "**Raimundo Neto**" + t2.slice(14), "/img/foto-comercio.png", "Raimundo Neto, presidente do SINDICOM"]);
   }
+
+  // Texto completo e fotos da matéria sobre violência contra a mulher (só preenche se ainda estiver vazia)
+  await p.query(
+    "UPDATE materias SET corpo = $1, imagem = $2, alt = $3, autor = $4, titulo = $5 WHERE slug = $6 AND corpo = ''",
+    [MATERIA_VIOLENCIA_CORPO, "/img/violencia/principal.png", "Mulher com as mãos sobre a boca, símbolo do silêncio diante da violência", "Carlos Santos", "Violência contra a mulher: identifique, proteja e denuncie", "rede-de-protecao-violencia-domestica-feminicidio-maraba"],
+  );
 }
 
 /** Executa uma consulta (cria as tabelas e os dados iniciais na primeira vez). */

@@ -30,7 +30,8 @@ export default function Header() {
   // Data em Marabá (fuso de Belém), como no cabeçalho do layout
   useEffect(() => {
     const f = new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Belem", weekday: "long", day: "numeric", month: "long", year: "numeric" });
-    setData(f.format(new Date()));
+    const t = f.format(new Date());
+    setData(t.charAt(0).toUpperCase() + t.slice(1));
   }, []);
 
   // Máxima/mínima do dia (Open-Meteo, sem chave). Se falhar, o item some.

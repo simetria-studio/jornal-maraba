@@ -65,7 +65,7 @@ export default function PesquisaPopular() {
 
       <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
         <legend className="q" style={{ display: "block", margin: "1rem auto .6rem", fontSize: "1.05rem" }}>
-          O desempenho da <b>CÂMARA DE VEREADORES DE MARABÁ</b> tem sido:
+          <b>O DESEMPENHO DA CÂMARA DE VEREADORES DE MARABÁ TEM SIDO:</b>
         </legend>
         <div className="opcoes">
           {(["bom", "razoavel", "ruim"] as const).map((k) => (
@@ -78,11 +78,11 @@ export default function PesquisaPopular() {
         </div>
       </fieldset>
 
-      <p className="q" id="pp-bons">Indique de 1 até 5 <b>VEREADORES DE BONS PROJETOS DE LEI</b>:</p>
+      <p className="q" id="pp-bons"><b>INDIQUE DE 1 ATÉ 5 VEREADORES DE BONS PROJETOS DE LEI:</b></p>
       <Select labelledBy="pp-bons" placeholder="Click e Selecione" items={itensVereadores} value={bons} onChange={setBons} multiple max={5} dark />
       <p className="nota" style={{ textAlign: "left" }} aria-live="polite">{bons.length}/5 indicados</p>
 
-      <p className="q" id="pp-dest">Das suas escolhas acima, <b>O DESTAQUE PELA EXCELÊNCIA DO MANDATO É</b>:</p>
+      <p className="q" id="pp-dest"><b>DA ESCOLHA ACIMA, O MAIOR DESTAQUE PELA EXCELÊNCIA DO MANDATO É:</b></p>
       <Select labelledBy="pp-dest" items={itensDestaque} value={destaque} onChange={setDestaque} dark disabled={!bons.length} placeholder={bons.length ? "Click e Selecione" : "Indique vereadores acima"} />
 
       <div className="acoes">

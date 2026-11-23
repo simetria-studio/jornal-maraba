@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AvisoCookies from "@/components/AvisoCookies";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -8,6 +9,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <Header />
       <main id="conteudo" className="container">{children}</main>
       <Footer />
+      <AvisoCookies />
     </>
   );
 }

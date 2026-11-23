@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Política de Privacidade" };
 
 export default function Privacidade() {
   return (
-    <article className="pagina longa">
+    <article className="pagina longa pv">
       <h1>Política de Privacidade</h1>
       <span className="sublinha" aria-hidden="true" />
       <div style={{ height: "1.2rem" }} />

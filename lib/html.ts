@@ -1,8 +1,17 @@
 // Limpeza de HTML da matéria. Roda no servidor (ao salvar e ao exibir) e no navegador (ao colar).
 // Só passam as etiquetas da lista abaixo e, nelas, só o href de links http, https ou mailto.
 
-const MAPA: Record<string, string> = { b: "strong", i: "em", div: "p", strong: "strong", em: "em", u: "u", p: "p", br: "br", h1: "h2", h2: "h2", h3: "h3", h4: "h3", ul: "ul", ol: "ol", li: "li", blockquote: "blockquote", a: "a" };
-const VAZIAS = new Set(["br"]);
+const MAPA: Record<string, string> = { b: "strong", i: "em", div: "p", strong: "strong", em: "em", u: "u", p: "p", br: "br", h1: "h2", h2: "h2", h3: "h3", h4: "h3", ul: "ul", ol: "ol", li: "li", blockquote: "blockquote", a: "a", figure: "figure", figcaption: "figcaption", img: "img" };
+const VAZIAS = new Set(["br", "img"]);
+
+// Imagem só se for do próprio site (/img/ ou /uploads/): nada de endereços externos.
+function imgSegura(attrs: string): string | null {
+  const g = (n: string) => { const m = attrs.match(new RegExp(n + "\\s*=\\s*(?:\"([^\"]*)\"|'([^']*)')", "i")); return (m?.[1] ?? m?.[2] ?? "").trim(); };
+  const src = g("src");
+  if (!/^\/(img|uploads)\/[\w\-./%]+$/.test(src) || src.includes("..")) return null;
+  const alt = g("alt").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+  return `<img src="${src}" alt="${alt}" loading="lazy">`;
+}
 
 function hrefSeguro(attrs: string): string | null {
   const m = attrs.match(/href\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i);
@@ -28,6 +37,8 @@ export function limparHtml(entrada: string): string {
       const i = pilha.lastIndexOf(tag);
       if (i < 0) continue;
       while (pilha.length > i) saida += `</${pilha.pop()}>`;
+    } else if (tag === "img") {
+      saida += imgSegura(m[3]) ?? "";
     } else if (VAZIAS.has(tag)) {
       saida += "<br>";
     } else if (tag === "a") {
@@ -46,7 +57,7 @@ export function limparHtml(entrada: string): string {
 }
 
 export function temHtml(texto: string): boolean {
-  return /<\/?(p|br|strong|em|b|i|u|h[1-4]|ul|ol|li|blockquote|a|div)(?=[\s>\/])[^>]*>/i.test(texto);
+  return /<\/?(p|br|strong|em|b|i|u|h[1-4]|ul|ol|li|blockquote|a|div|figure|img)(?=[\s>\/])[^>]*>/i.test(texto);
 }
 
 /** Texto puro (para busca e resumos). */

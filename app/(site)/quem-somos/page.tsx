@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Quem Somos" };
 
 export default function QuemSomos() {
   return (
-    <article className="pagina" id="texto-pagina">
+    <article className="pagina qs" id="texto-pagina">
       <h1>Quem Somos</h1>
       <div><LerEmVoz alvo="#texto-pagina" compacto /></div>
       {QUEM_SOMOS.map((t, i) => {
